@@ -18,7 +18,7 @@ GO
 -- Create date: 
 -- Description:	Xuất hóa đơn < số lượng tồn
 -- =============================================
-CREATE PROCEDURE sp_XUAT_HOADON 
+ALTER PROCEDURE sp_XUAT_HOADON 
 	@MAHD NVARCHAR(50),
 	@MASP SMALLINT,
 	@SOLUONG SMALLINT,
@@ -32,6 +32,7 @@ BEGIN
 	IF @SOLUONG > (SELECT SoLuongTon FROM SANPHAM WHERE MaSP = @MASP)
 	BEGIN 
 		ROLLBACK TRAN
+		PRINT N'KHÔNG ĐỦ SỐ LƯỢNG!'
 		RETURN
 	END
 	COMMIT TRAN
